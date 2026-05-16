@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мессенджер</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Экран входа: имя при первом заходе -->
+  <div id="welcome-screen" class="welcome-screen hidden">
+    <div class="welcome-card">
+      <div class="welcome-icon">💬</div>
+      <h1>Добро пожаловать</h1>
+      <p>Как тебя показывать в чате? (до 10 человек в команде)</p>
+      <form id="welcome-form">
+        <input
+          type="text"
+          id="welcome-name"
+          placeholder="Твоё имя"
+          maxlength="32"
+          autocomplete="nickname"
+          required
+        >
+        <button type="submit">Войти в чат</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-header">
+        <h2>Чаты</h2>
+        <p class="sidebar-user">Вы: <strong id="current-user-label"></strong></p>
+      </header>
+
+      <nav class="chat-list" id="chat-list">
+        <button type="button" class="chat-item active" data-room="general">
+          <span class="chat-item-icon">👥</span>
+          <span class="chat-item-text">
+            <span class="chat-item-title">Общий чат</span>
+            <span class="chat-item-sub">Все участники</span>
+          </span>
+        </button>
+        <p class="chat-list-label">Личные сообщения</p>
+        <div id="dm-list"></div>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <main class="chat-panel">
+      <header class="chat-header">
+        <button type="button" class="menu-btn" id="menu-btn" aria-label="Меню чатов">☰</button>
+        <div>
+          <h1 id="chat-title">Общий чат</h1>
+          <p class="chat-subtitle" id="chat-subtitle">Групповая переписка</p>
+        </div>
+      </header>
+
+      <div class="messages" id="messages" aria-live="polite"></div>
+
+      <footer class="composer">
+        <div class="emoji-panel hidden" id="emoji-panel"></div>
+        <form id="message-form" class="composer-form">
+          <button type="button" class="emoji-btn" id="emoji-btn" aria-label="Эмодзи">😊</button>
+          <textarea
+            id="message-input"
+            rows="1"
+            placeholder="Сообщение..."
+            maxlength="2000"
+            required
+          ></textarea>
+          <button type="submit" class="send-btn" aria-label="Отправить">➤</button>
+        </form>
+      </footer>
+    </main>
+  </div>
+
+  <p id="config-warning" class="config-warning hidden">
+    Укажи SUPABASE_URL и SUPABASE_ANON_KEY в начале файла script.js
+  </p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
